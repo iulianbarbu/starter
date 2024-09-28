@@ -35,3 +35,12 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+-- Needed because nvchad is hardcoding mason bin path at
+-- the start of the path.
+local mason_path = vim.fn.stdpath "data" .. "/mason/bin"
+vim.env.PATH = vim.env.PATH:gsub(mason_path .. ":", "")
+vim.env.PATH = vim.env.PATH .. ":" .. mason_path
+
+-- It adds a bit more data about how lsp is behaving.
+vim.lsp.set_log_level "debug"
