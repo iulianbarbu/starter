@@ -32,12 +32,20 @@ return {
         tools = {},
         -- LSP configuration
         server = {
-          on_attach = function(_, bufnr)
+          on_attach = function(client, bufnr)
             local function opts(desc)
               return { buffer = bufnr, desc = "LSP " .. desc }
             end
 
+            if client.server_capabilities["documentSymbolProvider"] then
+              require("nvim-navic").attach(client, bufnr)
+            end
+
             vim.g.rustfmt_command = 'rustfmt +nightly-2024-04-10'
+
+            if client.server_capabilities["documentSymbolProvider"] then
+              require("nvim-navic").attach(client, bufnr)
+            end
 
             local map = vim.keymap.set
             map("n", "gD", vim.lsp.buf.declaration, opts "Go to declaration")
@@ -130,6 +138,16 @@ return {
         sources = { { name = "crates" } },
       }
     end,
+  },
+  {
+    "utilyre/barbecue.nvim",
+    name = "barbecue",
+    version = "*",
+    dependencies = {
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons", -- optional dependency
+    },
+    opts = require 'configs.barbecue',
   },
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",
