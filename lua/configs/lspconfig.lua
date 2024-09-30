@@ -15,3 +15,5 @@ for _, lsp in ipairs(servers) do
     capabilities = nvlsp.capabilities,
   }
 end
+
+lspconfig["taplo"].setup {}

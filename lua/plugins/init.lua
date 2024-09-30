@@ -17,7 +17,7 @@ return {
   {
     "mrcjkb/rustaceanvim",
     version = "^5", -- Recommended
-    lazy = false,   -- This plugin is already lazy
+    lazy = false, -- This plugin is already lazy
     ft = "rust",
     config = function()
       local mason_registry = require "mason-registry"
@@ -41,7 +41,7 @@ return {
               require("nvim-navic").attach(client, bufnr)
             end
 
-            vim.g.rustfmt_command = 'rustfmt +nightly-2024-04-10'
+            vim.g.rustfmt_command = "rustfmt +nightly-2024-04-10"
 
             if client.server_capabilities["documentSymbolProvider"] then
               require("nvim-navic").attach(client, bufnr)
@@ -62,7 +62,7 @@ return {
             map("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
 
             map("n", "<leader>ra", function()
-              require "nvchad.lsp.renamer" ()
+              require "nvchad.lsp.renamer"()
             end, opts "NvRenamer")
 
             map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts "Code action")
@@ -75,11 +75,11 @@ return {
                 features = "all",
               },
               check = {
-                command = 'clippy',
+                command = "clippy",
                 extraArgs = {
-                  '--target-dir',
-                  'target/rust-analyzer-check'
-                }
+                  "--target-dir",
+                  "target/rust-analyzer-check",
+                },
               },
               procMacro = {
                 enable = true, -- Enable procedural macros support
@@ -147,7 +147,7 @@ return {
       "SmiteshP/nvim-navic",
       "nvim-tree/nvim-web-devicons", -- optional dependency
     },
-    opts = require 'configs.barbecue',
+    opts = require "configs.barbecue",
   },
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",
