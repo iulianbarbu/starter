@@ -5,7 +5,24 @@ return {
     -- overwrite format on save
     opts = require "configs.conform",
   },
+  {
+    "f-person/git-blame.nvim",
+    -- load the plugin at startup
+    event = "VeryLazy",
+    -- Because of the keys part, you will be lazy loading this plugin.
+    -- The plugin wil only load once one of the keys is used.
+    -- If you want to load the plugin at startup, add something like event = "VeryLazy",
+    -- or lazy = false. One of both options will work.
+    opts = {
+      -- your configuration comes here
+      -- for example
+      enabled = true, -- if you want to enable the plugin
+      message_template = " <summary> • <date> • <author> • <<sha>>", -- template for the blame message, check the Message template section for more options
+      date_format = "%m-%d-%Y %H:%M:%S", -- template for the date, check Date format section for more options
+      virtual_text_column = 1, -- virtual text start column, check Start virtual text at column section for more options
+    },
 
+  },
   -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
@@ -17,7 +34,7 @@ return {
   {
     "mrcjkb/rustaceanvim",
     version = "^5", -- Recommended
-    lazy = false, -- This plugin is already lazy
+    lazy = false,   -- This plugin is already lazy
     ft = "rust",
     config = function()
       local mason_registry = require "mason-registry"
@@ -62,7 +79,7 @@ return {
             map("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
 
             map("n", "<leader>ra", function()
-              require "nvchad.lsp.renamer"()
+              require "nvchad.lsp.renamer" ()
             end, opts "NvRenamer")
 
             map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts "Code action")
@@ -73,9 +90,11 @@ return {
             ["rust-analyzer"] = {
               cargo = {
                 features = "all",
+                allTargets = false,
               },
               check = {
                 command = "clippy",
+                allTargets = false,
                 extraArgs = {
                   "--target-dir",
                   "target/rust-analyzer-check",
@@ -149,13 +168,46 @@ return {
     },
     opts = require "configs.barbecue",
   },
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  {
+    "charludo/projectmgr.nvim",
+    lazy = false, -- important!
+    config = function()
+      require("projectmgr").setup({
+        session = { enabled = true, file = ".git/Session.vim" },
+      })
+    end,
+  },
+  {
+    "princejoogie/dir-telescope.nvim",
+    lazy = true,
+    -- telescope.nvim is a required dependency
+    requires = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("dir-telescope").setup({
+        -- these are the default options set
+        hidden = true,
+        no_ignore = false,
+        show_preview = true,
+        follow_symlinks = false,
+      })
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = { "rust", "toml", "gitcommit", "diff", "git_rebase" },
+    },
+  },
+  {
+    {
+      "nvim-tree/nvim-tree.lua",
+      opts = {
+        diagnostics = {
+          enable = true,
+          show_on_dirs = true,
+        },
+      }
+
+    },
+  }
 }
