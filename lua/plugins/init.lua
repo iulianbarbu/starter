@@ -90,11 +90,11 @@ return {
             ["rust-analyzer"] = {
               cargo = {
                 features = "all",
-                allTargets = false,
+                allTargets = true,
               },
+              checkOnSave = false,
               check = {
                 command = "clippy",
-                allTargets = false,
                 extraArgs = {
                   "--target-dir",
                   "target/rust-analyzer-check",
@@ -195,7 +195,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      ensure_installed = { "rust", "toml", "gitcommit", "diff", "git_rebase" },
+      ensure_installed = { "rust", "toml", "gitcommit", "diff", "git_rebase", "markdown" },
     },
   },
   {
@@ -208,6 +208,23 @@ return {
         },
       }
 
+    },
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+    },
+    keys = {
+      { "<A-Left>",  "<CMD>TmuxNavigateLeft<CR>" },
+      { "<A-Down>",  "<CMD>TmuxNavigateDown<CR>" },
+      { "<A-Up>",    "<CMD>TmuxNavigateUp<CR>" },
+      { "<A-Right>", "<CMD>TmuxNavigateRight<CR>" },
+      { "<A-\\>",    "<CMD>TmuxNavigatePrevious<CR>" },
     },
   }
 }

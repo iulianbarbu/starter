@@ -3,8 +3,7 @@ local options = {
     lua = { "stylua" },
     rust = { "rustfmt", lsp_format = "prefer" },
     toml = { "taplo", lsp_format = "prefer" },
-    -- css = { "prettier" },
-    -- html = { "prettier" },
+    markdown = { "markdownlint" }
   },
 
   format_on_save = {

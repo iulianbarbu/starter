@@ -15,3 +15,7 @@ map("n", "<leader>fp", "<CMD>ProjectMgr<CR>", { desc = "Open Projects" })
 map("n", "<leader>fr", "<CMD>Telescope resume<CR>", { desc = "Resume previous search" })
 map("n", "<leader>fW", "<cmd>Telescope dir live_grep<CR>", { noremap = true, silent = true })
 map("n", "<leader>fF", "<cmd>Telescope dir find_files<CR>", { noremap = true, silent = true })
+
+-- Diagnostics
+map("n", "<leader>i", ":lua vim.diagnostic.open_float(nil, {focus=false, scope='cursor'})<CR>",
+  { desc = "Open Diagnostic Float", noremap = true, silent = true })
