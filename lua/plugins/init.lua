@@ -193,6 +193,14 @@ return {
     end,
   },
   {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    cmd = "Telescope",
+    opts = function()
+      return require "configs.telescope"
+    end,
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = { "rust", "toml", "gitcommit", "diff", "git_rebase", "markdown" },
