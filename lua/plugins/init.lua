@@ -14,8 +14,6 @@ return {
     -- If you want to load the plugin at startup, add something like event = "VeryLazy",
     -- or lazy = false. One of both options will work.
     opts = {
-      -- your configuration comes here
-      -- for example
       enabled = true, -- if you want to enable the plugin
       message_template = " <summary> • <date> • <author> • <<sha>>", -- template for the blame message, check the Message template section for more options
       date_format = "%m-%d-%Y %H:%M:%S", -- template for the date, check Date format section for more options
@@ -49,6 +47,7 @@ return {
         tools = {},
         -- LSP configuration
         server = {
+          -- cmd = vim.lsp.rpc.connect("127.0.0.1", 27631),
           on_attach = function(client, bufnr)
             local function opts(desc)
               return { buffer = bufnr, desc = "LSP " .. desc }
@@ -88,6 +87,11 @@ return {
           default_settings = {
             -- rust-analyzer language server configuration
             ["rust-analyzer"] = {
+              lspMux = {
+                version = "1",
+                method = "connect",
+                server = "rust-analyzer",
+              },
               cargo = {
                 features = "all",
                 allTargets = true,
