@@ -19,3 +19,15 @@ map("n", "<leader>fF", "<cmd>Telescope dir find_files<CR>", { noremap = true, si
 -- Diagnostics
 map("n", "<leader>i", ":lua vim.diagnostic.open_float(nil, {focus=false, scope='cursor'})<CR>",
   { desc = "Open Diagnostic Float", noremap = true, silent = true })
+
+vim.api.nvim_create_user_command("ClearLspLog", function()
+  local log_path = vim.lsp.get_log_path()
+  local file = io.open(log_path, "w")
+  if file then
+    file:write("")
+    file:close()
+    print("LSP log cleared.")
+  else
+    print("Failed to clear LSP log.")
+  end
+end, {})
