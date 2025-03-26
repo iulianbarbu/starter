@@ -1,9 +1,10 @@
 require "nvchad.options"
 
 vim.o.relativenumber = true
-vim.o.smarttab = true
-vim.o.smartindent = true
-vim.o.shiftwidth = 2
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.opt_local.expandtab = false 
+vim.opt_local.softtabstop = 4
 
 vim.g.gitblame_enabled = 1
 vim.g.tmux_navigator_no_mappings = 1
