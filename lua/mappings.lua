@@ -17,7 +17,7 @@ map("n", "<leader>fW", "<cmd>Telescope dir live_grep<CR>", { noremap = true, sil
 map("n", "<leader>fF", "<cmd>Telescope dir find_files<CR>", { noremap = true, silent = true })
 
 -- Diagnostics
-map("n", "<leader>i", ":lua vim.diagnostic.open_float(nil, {focus=false, scope='cursor'})<CR>",
+map("n", "<leader>i", ":lua vim.diagnostic.open_float(nil, {focus=true, scope='cursor'})<CR>",
   { desc = "Open Diagnostic Float", noremap = true, silent = true })
 
 vim.api.nvim_create_user_command("ClearLspLog", function()

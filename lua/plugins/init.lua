@@ -88,6 +88,9 @@ return {
 
 						map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts "Code action")
 						map("n", "gr", vim.lsp.buf.references, opts "Show references")
+
+						-- disable expandtab
+						vim.o.expandtab = false
 					end,
 					default_settings = {
 						["rust-analyzer"] = {
@@ -115,7 +118,7 @@ return {
 								},
 							},
 							procMacro = {
-								enable = false, -- Enable procedural macros support
+								enable = true, -- Enable procedural macros support
 							},
 							rustfmt = {
 								extraArgs = { "+nightly-2024-04-10" },
