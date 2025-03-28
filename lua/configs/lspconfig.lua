@@ -17,3 +17,11 @@ for _, lsp in ipairs(servers) do
 end
 
 lspconfig["taplo"].setup {}
+lspconfig["bacon_ls"].setup {
+    init_options = {
+        updateOnSave = true,
+        updateOnSaveWaitMillis = 5000,
+    },
+}
+
+vim.g.lazyvim_rust_diagnostics = "bacon-ls"

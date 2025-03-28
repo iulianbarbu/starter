@@ -1,6 +1,7 @@
 require "nvchad.options"
 
 vim.o.relativenumber = true
+vim.o.number = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.opt_local.expandtab = false 
@@ -11,6 +12,3 @@ vim.g.tmux_navigator_no_mappings = 1
 
 -- Enable true color support
 vim.opt.termguicolors = true
-
--- local o = vim.o
--- o.cursorlineopt ='both' -- to enable cursorline!

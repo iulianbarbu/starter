@@ -25,7 +25,6 @@ return {
 			date_format = "%m-%d-%Y %H:%M:%S", -- template for the date, check Date format section for more options
 			virtual_text_column = 1, -- virtual text start column, check Start virtual text at column section for more options
 		},
-
 	},
 	-- These are some examples, uncomment them if you want to see them work!
 	{
@@ -91,7 +90,6 @@ return {
 						map("n", "gr", vim.lsp.buf.references, opts "Show references")
 					end,
 					default_settings = {
-						-- rust-analyzer language server configuration
 						["rust-analyzer"] = {
 							lspMux = {
 								version = "1",
@@ -101,6 +99,12 @@ return {
 							cargo = {
 								features = "all",
 								allTargets = true,
+								buildScripts = {
+									enable = false,
+								}
+							},
+							diagnostics = {
+								enable = false,
 							},
 							checkOnSave = false,
 							check = {
@@ -110,11 +114,8 @@ return {
 									"target/rust-analyzer-check",
 								},
 							},
-							buildScripts = {
-								enable = true,
-							},
 							procMacro = {
-								enable = true, -- Enable procedural macros support
+								enable = false, -- Enable procedural macros support
 							},
 							rustfmt = {
 								extraArgs = { "+nightly-2024-04-10" },
@@ -185,9 +186,9 @@ return {
 		"charludo/projectmgr.nvim",
 		lazy = false, -- important!
 		config = function()
-			require("projectmgr").setup({
+			require("projectmgr").setup {
 				session = { enabled = true, file = ".git/Session.vim" },
-			})
+			}
 		end,
 	},
 	{
@@ -196,13 +197,13 @@ return {
 		-- telescope.nvim is a required dependency
 		requires = { "nvim-telescope/telescope.nvim" },
 		config = function()
-			require("dir-telescope").setup({
+			require("dir-telescope").setup {
 				-- these are the default options set
 				hidden = true,
 				no_ignore = false,
 				show_preview = true,
 				follow_symlinks = false,
-			})
+			}
 		end,
 	},
 	{
@@ -227,8 +228,7 @@ return {
 					enable = true,
 					show_on_dirs = true,
 				},
-			}
-
+			},
 		},
 	},
 	{
@@ -247,5 +247,17 @@ return {
 			{ "<A-Right>", "<CMD>TmuxNavigateRight<CR>" },
 			{ "<A-\\>",    "<CMD>TmuxNavigatePrevious<CR>" },
 		},
-	}
+	},
+	{
+		"Canop/nvim-bacon",
+		lazy = false,
+		config = function()
+			require("bacon").setup {
+				quickfix = {
+					enabled = true, -- Enable Quickfix integration
+					event_trigger = true, -- Trigger QuickFixCmdPost after populating Quickfix list
+				},
+			}
+		end,
+	},
 }
